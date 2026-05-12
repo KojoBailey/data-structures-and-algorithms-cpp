@@ -2,6 +2,8 @@
 #include <format>
 #include <string>
 
+#include "optional.hpp"
+
 template<typename T, std::size_t N>
 class StaticArray {
 public:
@@ -10,17 +12,17 @@ public:
 
 	value_type _array[size]{};
 
-	value_type operator[](std::size_t index)
+	[[nodiscard]] value_type operator[](std::size_t index) const
 	{
 		return _array[index];
 	}
 
-	auto sequential_search(value_type target, std::size_t target_iteration = 0)
+	[[nodiscard]] auto sequential_search(value_type target, std::size_t target_iteration = 0) const
 		-> std::optional<std::size_t>
 	{
 		std::size_t index = 0;
 		std::size_t iteration = 0;
-		for (auto elem : _array) {
+		for (const auto elem : _array) {
 			if (elem == target) {
 				if (iteration == target_iteration) {
 					return index;

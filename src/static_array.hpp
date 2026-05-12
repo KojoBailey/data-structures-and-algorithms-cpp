@@ -17,6 +17,13 @@ public:
 		return _array[index];
 	}
 
+	/** -- Algorithm: Sequential Search --
+	 * Special Requirements: None
+	 * Time Complexity:
+	 * - Worst Case: O(n)
+	 * - Best Case:  O(1)
+	 * Space Complexity: O(1)
+	 */
 	[[nodiscard]] auto sequential_search(value_type target, std::size_t target_iteration = 0) const
 		-> Optional<std::size_t>
 	{
@@ -30,6 +37,34 @@ public:
 				iteration++;
 			}
 			index++;
+		}
+
+		return {};
+	}
+
+	/** -- Algorithm: Binary Search --
+	 * Special Requirements: Ordered
+	 * Time Complexity:
+	 * - Worst Case: O(log(n))
+	 * - Best Case:  O(1)
+	 * Space Complexity: O(1)
+	 */
+	[[nodiscard]] auto binary_search(value_type target) const
+		-> Optional<std::size_t>
+	{
+		std::size_t lower_bound = 0;
+		std::size_t upper_bound = size;
+		
+		while (lower_bound < upper_bound) {
+			std::size_t middle = lower_bound + (upper_bound - lower_bound) / 2;
+			value_type current_value = _array[middle];
+			if (current_value > target) {
+				upper_bound = middle;
+			} else if (current_value < target) {
+				lower_bound = middle + 1;
+			} else {
+				return middle;
+			}
 		}
 
 		return {};

@@ -12,7 +12,7 @@ public:
 
 	value_type _array[size]{};
 
-	[[nodiscard]] value_type operator[](std::size_t index) const
+	[[nodiscard]] value_type& operator[](std::size_t index) const
 	{
 		return _array[index];
 	}

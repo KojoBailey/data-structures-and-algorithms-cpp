@@ -18,7 +18,7 @@ public:
 	}
 
 	[[nodiscard]] auto sequential_search(value_type target, std::size_t target_iteration = 0) const
-		-> std::optional<std::size_t>
+		-> Optional<std::size_t>
 	{
 		std::size_t index = 0;
 		std::size_t iteration = 0;

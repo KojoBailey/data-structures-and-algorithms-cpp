@@ -12,4 +12,6 @@ int main()
 	std::println("{}", arr.sequential_search(1, 1));
 	std::println("{}", arr.sequential_search(4));
 	std::println("{}", arr.sequential_search(5));
+	std::println("{}", arr.sequential_search(42));
+	std::println("{}", arr.sequential_search(1, 2));
 }

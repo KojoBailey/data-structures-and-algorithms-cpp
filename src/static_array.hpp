@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <format>
+#include <random>
 #include <string>
 
 #include "optional.hpp"
@@ -68,6 +69,19 @@ public:
 		}
 
 		return {};
+	}
+
+	[[nodiscard]] std::size_t bogo_search(value_type target) const
+	{
+		static std::mt19937 rng{std::random_device{}()};
+		std::uniform_int_distribution<std::size_t> dist{0, size - 1};
+		
+		while (true) {
+			std::size_t index = dist(rng);
+			if (_array[index] == target) {
+				return index;
+			}
+		}
 	}
 };
 

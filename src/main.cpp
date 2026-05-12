@@ -9,6 +9,7 @@ int main()
 	std::println("Current options:");
 	std::println("- array search sequential");
 	std::println("- array search binary");
+	std::println("- array search bogo");
 
 	std::string user_input;
 	std::print(">>> ");
@@ -39,5 +40,11 @@ int main()
 		std::println("index of -5 = {}", arr.binary_search(-5));
 		std::println("index of 500 = {}", arr.binary_search(500));
 		std::println("index of 25 = {}", arr.binary_search(25));
+	} else if (user_input == "array search bogo") {
+		StaticArray<int, 15> arr = {3, 1, 4, 23, 5, 9, 2, 6, 42, 369, 108, 8, 902, 7, 85};
+		std::println("array = {}", arr);
+		std::println();
+
+		std::println("index of 369 = {}", arr.bogo_search(369));
 	}
 }

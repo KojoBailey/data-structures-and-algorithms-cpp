@@ -24,12 +24,7 @@ public:
 
 	[[nodiscard]] bool is_empty() const
 	{
-		return _has_value;
-	}
-
-	[[nodiscard]] bool operator!() const
-	{
-		return is_empty();
+		return !_has_value;
 	}
 
 	[[nodiscard]] value_type& value()
@@ -40,7 +35,29 @@ public:
 		return _value;
 	}
 
+	[[nodiscard]] value_type value_copy() const
+	{
+		if (!_has_value) {
+			throw EmptyOptionalAccess{};
+		}
+		return _value;
+	}
+
 private:
 	value_type _value{};
 	bool _has_value{false};
+};
+
+template<typename T>
+struct std::formatter<Optional<T>> {
+	constexpr auto parse(std::format_parse_context& ctx) {
+		return ctx.begin();
+	}
+
+	auto format(const Optional<T>& obj, std::format_context& ctx) const {
+		if (obj.is_empty()) {
+			return std::format_to(ctx.out(), "Optional::Empty");
+		}
+		return std::format_to(ctx.out(), "Optional::{{{}}}", obj.value_copy());
+	}
 };

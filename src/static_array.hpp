@@ -19,7 +19,6 @@ public:
 	}
 
 	/** -- Algorithm: Sequential Search --
-	 * Special Requirements: None
 	 * Time Complexity:
 	 * - Worst Case: O(n)
 	 * - Best Case:  O(1)
@@ -71,6 +70,12 @@ public:
 		return {};
 	}
 
+	/** -- Algorithm: Bogo Search --
+	 * Time Complexity:
+	 * - Worst Case: O(∞)
+	 * - Best Case:  O(1)
+	 * Space Complexity: O(1)
+	 */
 	[[nodiscard]] std::size_t bogo_search(value_type target) const
 	{
 		static std::mt19937 rng{std::random_device{}()};

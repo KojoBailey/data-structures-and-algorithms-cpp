@@ -1,5 +1,5 @@
-#ifndef ALGO_DATA_STATIC_ARRAY
-#define ALGO_DATA_STATIC_ARRAY
+#ifndef ALGO_DATA_DYNAMIC_ARRAY
+#define ALGO_DATA_DYNAMIC_ARRAY
 
 #include <cstdint>
 #include <format>
@@ -9,13 +9,25 @@
 #include "optional.hpp"
 #include "util.hpp"
 
-template<typename T, std::size_t N>
-class StaticArray {
+template<typename T>
+class DynamicArray {
 public:
 	using value_type = T;
-	static constexpr std::size_t size = N;
 
-	value_type _array[size]{};
+	static constexpr std::size_t size = 20;
+
+	value_type _array[] = new T[size]{};
+
+	template<typename... Args>
+	DynamicArray(Args... args)
+	{
+		add(args...);
+	}
+
+	void add(T& new_elem)
+	{
+		_array[0] = new_elem;
+	}
 
 	[[nodiscard]] value_type& operator[](std::size_t index) const
 	{
@@ -167,19 +179,19 @@ public:
 	}
 };
 
-template<typename T, std::size_t N>
-struct std::formatter<StaticArray<T, N>> {
+template<typename T>
+struct std::formatter<DynamicArray<T>> {
 	constexpr auto parse(std::format_parse_context& ctx) {
 		return ctx.begin();
 	}
 
-	auto format(const StaticArray<T, N>& obj, std::format_context& ctx) const {
+	auto format(const DynamicArray<T>& obj, std::format_context& ctx) const {
 		std::string str = "";
 		
 		std::size_t i = 0;
 		for (auto elem : obj._array) {
 			str += std::format("{}", elem);
-			if (i != N - 1) { 
+			if (i != obj.size - 1) { 
 				str += ", ";
 			}
 			i++;

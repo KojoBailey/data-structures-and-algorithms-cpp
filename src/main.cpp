@@ -7,6 +7,7 @@
 #include <ranges>
 
 #include "static_array.hpp"
+#include "dynamic_array.hpp"
 
 std::unordered_map<std::string,
 	std::unordered_map<std::string,
@@ -16,7 +17,8 @@ std::unordered_map<std::string,
 
 void array_search_sequential()
 {
-	StaticArray<int, 5> arr = {3, 1, 4, 1, 5};
+	// StaticArray<int, 5> arr = {3, 1, 4, 1, 5};
+	DynamicArray<int> arr{3, 1, 4, 1, 5};
 	std::println("array = {}", arr);
 	std::println();
 

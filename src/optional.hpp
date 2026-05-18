@@ -1,3 +1,6 @@
+#ifndef ALGO_DATA_OPTIONAL
+#define ALGO_DATA_OPTIONAL
+
 #include <format>
 #include <stdexcept>
 #include <string>
@@ -61,3 +64,5 @@ struct std::formatter<Optional<T>> {
 		return std::format_to(ctx.out(), "Optional::{{{}}}", obj.value_copy());
 	}
 };
+
+#endif

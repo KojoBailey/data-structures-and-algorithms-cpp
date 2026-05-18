@@ -90,6 +90,34 @@ public:
 		}
 	}
 
+	/** -- Algorithm: Find Minimum --
+	 * Time Complexity: O(n)
+	 */
+	[[nodiscard]] std::size_t find_min(const std::size_t left_bound = 0) const
+	{
+		std::size_t min_index = left_bound;
+		for (std::size_t i = left_bound + 1; i < size; i++) {
+			if (_array[i] < _array[min_index]) {
+				min_index = i;
+			}
+		}
+		return min_index;
+	}
+
+	/** -- Algorithm: Find Maximum --
+	 * Time Complexity: O(n)
+	 */
+	[[nodiscard]] std::size_t find_max(const std::size_t left_bound = 0) const
+	{
+		std::size_t max_index = left_bound;
+		for (std::size_t i = left_bound + 1; i < size; i++) {
+			if (_array[i] > _array[max_index]) {
+				max_index = i;
+			}
+		}
+		return max_index;
+	}
+
 	/** -- Algorithm: Bubble Sort --
 	 * Time Complexity: O(n^2)
 	 */
@@ -104,10 +132,18 @@ public:
 		}
 	}
 
-	// void selection_sort()
-	// {
-	// 	for (int i 
-	// }
+	/** -- Algorithm: Selection Sort --
+	 * Time Complexity: O(n^2)
+	 */
+	void selection_sort()
+	{
+		for (std::size_t i = 0; i < size - 2; i++) {
+			std::size_t min_index = find_min(i);
+			if (min_index != i) {
+				swap_by_address(&_array[min_index], &_array[i]);
+			}
+		}
+	}
 };
 
 template<typename T, std::size_t N>

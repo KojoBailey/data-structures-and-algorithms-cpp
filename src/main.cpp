@@ -52,6 +52,24 @@ void array_search_bogo()
 	std::println("index of 369 = {}", arr.bogo_search(369));
 }
 
+void array_find_min()
+{
+	StaticArray<int, 5> arr = {92, 54, 23, 87, 42};
+	std::println("array = {}", arr);
+	std::println();
+
+	std::println("index of minimum value = {}", arr.find_min());
+}
+
+void array_find_max()
+{
+	StaticArray<int, 5> arr = {52, 92, 23, 87, 42};
+	std::println("array = {}", arr);
+	std::println();
+
+	std::println("index of maximum value = {}", arr.find_max());
+}
+
 void array_sort_bubble()
 {
 	StaticArray<int, 15> arr = {3, 1, 4, 23, 5, 9, 2, 6, 42, 369, 108, 8, 902, 7, 85};
@@ -62,12 +80,25 @@ void array_sort_bubble()
 	std::println("sorted array: {}", arr);
 }
 
+void array_sort_selection()
+{
+	StaticArray<int, 15> arr = {3, 1, 4, 23, 5, 9, 2, 6, 42, 369, 108, 8, 902, 7, 85};
+	std::println("array = {}", arr);
+	std::println();
+
+	arr.selection_sort();
+	std::println("sorted array: {}", arr);
+}
+
 int main()
 {
 	functions["array"]["search"]["sequential"] = array_search_sequential;
 	functions["array"]["search"]["binary"] = array_search_binary;
 	functions["array"]["search"]["bogo"] = array_search_bogo;
+	functions["array"]["find"]["min"] = array_find_min;
+	functions["array"]["find"]["max"] = array_find_max;
 	functions["array"]["sort"]["bubble"] = array_sort_bubble;
+	functions["array"]["sort"]["selection"] = array_sort_selection;
 
 	std::println("Enter algorithm to test.");
 	std::println("Current options:");

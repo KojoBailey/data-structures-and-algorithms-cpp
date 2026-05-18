@@ -88,6 +88,23 @@ public:
 			}
 		}
 	}
+
+	/** -- Algorithm: Bubble Sort --
+	 * Time Complexity: O(n^2)
+	 */
+	void bubble_sort()
+	{
+		for (int i = size; i > 1; i--) {
+			for (int j = 0; j < i - 1; j++) {
+				if (_array[j] > _array[j+1]) {
+					// Swap without storing intermediate variable.
+					_array[j] ^= _array[j+1];
+					_array[j+1] ^= _array[j];
+					_array[j] ^= _array[j+1];
+				}
+			}
+		}
+	}
 };
 
 template<typename T, std::size_t N>

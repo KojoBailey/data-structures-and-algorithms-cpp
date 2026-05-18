@@ -52,11 +52,22 @@ void array_search_bogo()
 	std::println("index of 369 = {}", arr.bogo_search(369));
 }
 
+void array_sort_bubble()
+{
+	StaticArray<int, 15> arr = {3, 1, 4, 23, 5, 9, 2, 6, 42, 369, 108, 8, 902, 7, 85};
+	std::println("array = {}", arr);
+	std::println();
+
+	arr.bubble_sort();
+	std::println("sorted array: {}", arr);
+}
+
 int main()
 {
 	functions["array"]["search"]["sequential"] = array_search_sequential;
 	functions["array"]["search"]["binary"] = array_search_binary;
 	functions["array"]["search"]["bogo"] = array_search_bogo;
+	functions["array"]["sort"]["bubble"] = array_sort_bubble;
 
 	std::println("Enter algorithm to test.");
 	std::println("Current options:");

@@ -90,6 +90,16 @@ void array_sort_selection()
 	std::println("sorted array: {}", arr);
 }
 
+void array_sort_insertion()
+{
+	StaticArray<int, 15> arr = {3, 1, 4, 23, 5, 9, 2, 6, 42, 369, 108, 8, 902, 7, 85};
+	std::println("array = {}", arr);
+	std::println();
+
+	arr.insertion_sort();
+	std::println("sorted array: {}", arr);
+}
+
 int main()
 {
 	functions["array"]["search"]["sequential"] = array_search_sequential;
@@ -99,6 +109,7 @@ int main()
 	functions["array"]["find"]["max"] = array_find_max;
 	functions["array"]["sort"]["bubble"] = array_sort_bubble;
 	functions["array"]["sort"]["selection"] = array_sort_selection;
+	functions["array"]["sort"]["insertion"] = array_sort_insertion;
 
 	std::println("Enter algorithm to test.");
 	std::println("Current options:");

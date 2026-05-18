@@ -144,6 +144,24 @@ public:
 			}
 		}
 	}
+
+	/** -- Algorithm: Insertion Sort --
+	 * Time Complexity: O(n^2)
+	 */
+	void insertion_sort()
+	{
+		for (std::size_t i = 1; i < size; i++) {
+			value_type current_value = _array[i];
+			std::size_t new_index = 0;
+			while (new_index < i && _array[new_index] < current_value) {
+				new_index++;
+			}
+			for (std::size_t j = i; j > new_index; j--) {
+				_array[j] = _array[j-1];
+			}
+			_array[new_index] = current_value;
+		}
+	}
 };
 
 template<typename T, std::size_t N>

@@ -4,6 +4,7 @@
 #include <string>
 
 #include "optional.hpp"
+#include "util.hpp"
 
 template<typename T, std::size_t N>
 class StaticArray {
@@ -94,17 +95,19 @@ public:
 	 */
 	void bubble_sort()
 	{
-		for (int i = size; i > 1; i--) {
-			for (int j = 0; j < i - 1; j++) {
+		for (std::size_t i = size; i > 1; i--) {
+			for (std::size_t j = 0; j < i - 1; j++) {
 				if (_array[j] > _array[j+1]) {
-					// Swap without storing intermediate variable.
-					_array[j] ^= _array[j+1];
-					_array[j+1] ^= _array[j];
-					_array[j] ^= _array[j+1];
+					swap_by_address(&_array[j], &_array[j+1]);
 				}
 			}
 		}
 	}
+
+	// void selection_sort()
+	// {
+	// 	for (int i 
+	// }
 };
 
 template<typename T, std::size_t N>
